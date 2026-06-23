@@ -6,6 +6,9 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.config import get_settings
 from app.database import check_database_connection
@@ -46,6 +49,43 @@ def create_app() -> FastAPI:
         allow_headers=["*"],
     )
 
+    # ── Custom Error Handlers ─────────────────────────────────────────────
+    @app.exception_handler(StarletteHTTPException)
+    async def http_exception_handler(request, exc):
+        if isinstance(exc.detail, dict):
+            return JSONResponse(
+                status_code=exc.status_code,
+                content=exc.detail
+            )
+        return JSONResponse(
+            status_code=exc.status_code,
+            content={
+                "success": False,
+                "error_code": "UNAUTHORIZED" if exc.status_code == 401 else "INTERNAL_ERROR",
+                "error_message": str(exc.detail),
+                "data": None
+            }
+        )
+
+    @app.exception_handler(RequestValidationError)
+    async def validation_exception_handler(request, exc):
+        errors = exc.errors()
+        messages = []
+        for err in errors:
+            loc = " -> ".join(str(part) for part in err.get("loc", []))
+            msg = err.get("msg", "Unknown error")
+            messages.append(f"{loc}: {msg}")
+        
+        return JSONResponse(
+            status_code=422,
+            content={
+                "success": False,
+                "error_code": "VALIDATION_ERROR",
+                "error_message": "Validation error: " + "; ".join(messages),
+                "data": None
+            }
+        )
+
     # ── Health check ──────────────────────────────────────────────────────
     @app.get("/health", tags=["system"])
     def health_check():
@@ -57,9 +97,10 @@ def create_app() -> FastAPI:
             "environment": settings.app_env,
         }
 
-    # ── Routers (added in later phases) ──────────────────────────────────
-    # from app.routers import tools
-    # app.include_router(tools.router, prefix="/tools", tags=["tools"])
+    # ── Routers ───────────────────────────────────────────────────────────
+    from app.routers import tools, vapi
+    app.include_router(tools.router, prefix="/tools", tags=["tools"])
+    app.include_router(vapi.router, prefix="/vapi", tags=["vapi"])
 
     return app
 
