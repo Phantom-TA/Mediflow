@@ -12,7 +12,7 @@ from dotenv import load_dotenv  # noqa: E402
 load_dotenv(os.path.join(BACKEND_DIR, ".env"))
 
 from app.config import get_settings  # noqa: E402
-from app.database import create_engine, sessionmaker  # noqa: E402
+from app.database import create_engine, sessionmaker, Base  # noqa: E402
 from app.models.clinic import Clinic  # noqa: E402
 from app.models.doctor import Doctor  # noqa: E402
 from app.models.availability import Availability  # noqa: E402
@@ -21,10 +21,12 @@ from app.models.appointment import Appointment  # noqa: E402
 
 def seed_db():
     settings = get_settings()
-    db_url = settings.database_url
+    db_url = settings.effective_database_url
     print(f"Connecting to database: {db_url.split('@')[-1]}")
     
     engine = create_engine(db_url, echo=False)
+    # Ensure all tables exist
+    Base.metadata.create_all(bind=engine)
     SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
     session = SessionLocal()
     

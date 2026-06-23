@@ -16,7 +16,7 @@ from app.services.slot_engine import generate_all_slots  # noqa: E402
 
 def main():
     settings = get_settings()
-    db_url = settings.database_url
+    db_url = settings.effective_database_url
     days = settings.slot_generation_days
     
     print(f"Generating slots for all doctors over the next {days} days...")

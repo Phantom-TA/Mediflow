@@ -1,0 +1,38 @@
+id: SCN-005
+name: Cancel Appointment
+category: cancellation
+description: Book a slot then cancel it.
+caller_profile:
+  name: Cancel Guy
+  phone: '+916666666666'
+conversation_script:
+- turn: 1
+  speaker: patient
+  utterance: Book Ramesh B tomorrow.
+- turn: 2
+  speaker: agent
+  expected_tool_calls:
+  - check_availability
+  expected_tool_params:
+    doctor_name: Dr. Ramesh B.
+- turn: 3
+  speaker: patient
+  utterance: Book first slot.
+- turn: 4
+  speaker: agent
+  expected_tool_calls:
+  - book_appointment
+  expected_tool_params:
+    doctor_name: Dr. Ramesh B.
+- turn: 5
+  speaker: patient
+  utterance: Cancel that appointment please.
+- turn: 6
+  speaker: agent
+  expected_tool_calls:
+  - cancel_appointment
+expected_db_state:
+  appointments:
+  - patient_name: Cancel Guy
+    status: cancelled
+expected_outcome: cancelled
