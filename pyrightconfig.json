@@ -1,0 +1,7 @@
+{
+  "venvPath": "e:/mediflow/backend",
+  "venv": ".venv",
+  "extraPaths": [
+    "e:/mediflow/backend"
+  ]
+}

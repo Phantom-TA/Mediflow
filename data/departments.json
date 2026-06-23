@@ -1,0 +1,77 @@
+[
+  {
+    "id": "cardiology",
+    "name": "Cardiology",
+    "description": "Comprehensive cardiac care including interventional cardiology, robotic heart surgery, and preventive care."
+  },
+  {
+    "id": "orthopedics",
+    "name": "Orthopedics",
+    "description": "Specialized orthopedic care including joint replacement, sports medicine, spine surgery, and pediatric orthopedics."
+  },
+  {
+    "id": "gastroenterology",
+    "name": "Gastroenterology",
+    "description": "GI medicine, hepatology, and advanced diagnostic/therapeutic endoscopy."
+  },
+  {
+    "id": "pulmonology",
+    "name": "Pulmonology",
+    "description": "Pulmonary and respiratory medicine, allergy management, and critical care medicine."
+  },
+  {
+    "id": "dermatology",
+    "name": "Dermatology",
+    "description": "Clinical and cosmetic dermatology, skin pathology, and advanced laser treatments."
+  },
+  {
+    "id": "neurology",
+    "name": "Neurology",
+    "description": "Comprehensive care for neurological disorders including stroke, epilepsy, and neuromuscular conditions."
+  },
+  {
+    "id": "pediatrics",
+    "name": "Pediatrics",
+    "description": "Comprehensive medical care for infants, children, and adolescents."
+  },
+  {
+    "id": "gynecology",
+    "name": "Gynecology & Obstetrics",
+    "description": "Complete care for women's reproductive health, maternity care, and gynecological surgery."
+  },
+  {
+    "id": "ent",
+    "name": "ENT (Ear, Nose, Throat)",
+    "description": "Diagnostic and surgical interventions for disorders of ear, nose, throat, head, and neck."
+  },
+  {
+    "id": "nephrology",
+    "name": "Nephrology",
+    "description": "Diagnosis and management of kidney diseases and dialysis services."
+  },
+  {
+    "id": "urology",
+    "name": "Urology",
+    "description": "Complete care for urinary tract system and male reproductive health."
+  },
+  {
+    "id": "oncology",
+    "name": "Oncology",
+    "description": "Comprehensive cancer treatment including medical, surgical, and radiation oncology."
+  },
+  {
+    "id": "general_surgery",
+    "name": "General Surgery",
+    "description": "Wide range of surgical treatments including laparoscopic and minimally invasive procedures."
+  },
+  {
+    "id": "endocrinology",
+    "name": "Endocrinology",
+    "description": "Treatment for hormone-related conditions, diabetes, and metabolic disorders."
+  },
+  {
+    "id": "rheumatology",
+    "name": "Rheumatology",
+    "description": "Diagnosis and therapy of rheumatic diseases, arthritis, and autoimmune conditions."
+  }
+]

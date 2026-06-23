@@ -1,0 +1,153 @@
+[
+  {
+    "doctor_name": "Girish B. Navasundi",
+    "windows": [
+      { "day_of_week": 0, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 2, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 4, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 }
+    ]
+  },
+  {
+    "doctor_name": "Ramesh B.",
+    "windows": [
+      { "day_of_week": 1, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 3, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 5, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 }
+    ]
+  },
+  {
+    "doctor_name": "C. M. Nagesh",
+    "windows": [
+      { "day_of_week": 0, "start_time": "14:00", "end_time": "18:00", "slot_duration": 15 },
+      { "day_of_week": 2, "start_time": "14:00", "end_time": "18:00", "slot_duration": 15 },
+      { "day_of_week": 4, "start_time": "14:00", "end_time": "18:00", "slot_duration": 15 }
+    ]
+  },
+  {
+    "doctor_name": "Manish Samson",
+    "windows": [
+      { "day_of_week": 0, "start_time": "09:30", "end_time": "13:30", "slot_duration": 15 },
+      { "day_of_week": 1, "start_time": "09:30", "end_time": "13:30", "slot_duration": 15 },
+      { "day_of_week": 3, "start_time": "09:30", "end_time": "13:30", "slot_duration": 15 },
+      { "day_of_week": 4, "start_time": "09:30", "end_time": "13:30", "slot_duration": 15 }
+    ]
+  },
+  {
+    "doctor_name": "Rajashekhar K. T.",
+    "windows": [
+      { "day_of_week": 1, "start_time": "14:00", "end_time": "18:00", "slot_duration": 15 },
+      { "day_of_week": 2, "start_time": "14:00", "end_time": "18:00", "slot_duration": 15 },
+      { "day_of_week": 4, "start_time": "14:00", "end_time": "18:00", "slot_duration": 15 },
+      { "day_of_week": 5, "start_time": "14:00", "end_time": "18:00", "slot_duration": 15 }
+    ]
+  },
+  {
+    "doctor_name": "Raviraj A.",
+    "windows": [
+      { "day_of_week": 0, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 2, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 5, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 }
+    ]
+  },
+  {
+    "doctor_name": "Dinesh Kini K",
+    "windows": [
+      { "day_of_week": 0, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 1, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 2, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 3, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 4, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 }
+    ]
+  },
+  {
+    "doctor_name": "Ravishankar Bhat B",
+    "windows": [
+      { "day_of_week": 0, "start_time": "14:00", "end_time": "18:00", "slot_duration": 15 },
+      { "day_of_week": 1, "start_time": "14:00", "end_time": "18:00", "slot_duration": 15 },
+      { "day_of_week": 3, "start_time": "14:00", "end_time": "18:00", "slot_duration": 15 },
+      { "day_of_week": 4, "start_time": "14:00", "end_time": "18:00", "slot_duration": 15 }
+    ]
+  },
+  {
+    "doctor_name": "Sumant Mantri",
+    "windows": [
+      { "day_of_week": 0, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 1, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 2, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 3, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 4, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 5, "start_time": "09:00", "end_time": "12:00", "slot_duration": 15 }
+    ]
+  },
+  {
+    "doctor_name": "Vybhav Vijendra",
+    "windows": [
+      { "day_of_week": 0, "start_time": "14:00", "end_time": "18:00", "slot_duration": 15 },
+      { "day_of_week": 2, "start_time": "14:00", "end_time": "18:00", "slot_duration": 15 },
+      { "day_of_week": 4, "start_time": "14:00", "end_time": "18:00", "slot_duration": 15 }
+    ]
+  },
+  {
+    "doctor_name": "Surendra V H H",
+    "windows": [
+      { "day_of_week": 0, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 2, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 4, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 }
+    ]
+  },
+  {
+    "doctor_name": "Girish Panth",
+    "windows": [
+      { "day_of_week": 1, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 3, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 5, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 }
+    ]
+  },
+  {
+    "doctor_name": "Suryanarayana Sharma P M",
+    "windows": [
+      { "day_of_week": 0, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 1, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 3, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 4, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 }
+    ]
+  },
+  {
+    "doctor_name": "Gowtham Raman S",
+    "windows": [
+      { "day_of_week": 0, "start_time": "14:00", "end_time": "18:00", "slot_duration": 15 },
+      { "day_of_week": 2, "start_time": "14:00", "end_time": "18:00", "slot_duration": 15 },
+      { "day_of_week": 4, "start_time": "14:00", "end_time": "18:00", "slot_duration": 15 }
+    ]
+  },
+  {
+    "doctor_name": "Prashanth S Urs",
+    "windows": [
+      { "day_of_week": 0, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 1, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 2, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 3, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 4, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 5, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 }
+    ]
+  },
+  {
+    "doctor_name": "Chitra Ramamurthy",
+    "windows": [
+      { "day_of_week": 0, "start_time": "10:00", "end_time": "14:00", "slot_duration": 15 },
+      { "day_of_week": 1, "start_time": "10:00", "end_time": "14:00", "slot_duration": 15 },
+      { "day_of_week": 2, "start_time": "10:00", "end_time": "14:00", "slot_duration": 15 },
+      { "day_of_week": 3, "start_time": "10:00", "end_time": "14:00", "slot_duration": 15 },
+      { "day_of_week": 4, "start_time": "10:00", "end_time": "14:00", "slot_duration": 15 },
+      { "day_of_week": 5, "start_time": "10:00", "end_time": "14:00", "slot_duration": 15 }
+    ]
+  },
+  {
+    "doctor_name": "Sunil Narayan Dutt",
+    "windows": [
+      { "day_of_week": 0, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 2, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 },
+      { "day_of_week": 4, "start_time": "09:00", "end_time": "13:00", "slot_duration": 15 }
+    ]
+  }
+]

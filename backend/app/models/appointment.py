@@ -22,6 +22,7 @@ CRITICAL:
 
 import uuid
 from datetime import datetime
+from typing import TYPE_CHECKING
 
 from sqlalchemy import (
     CheckConstraint,
@@ -36,6 +37,12 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
+
+if TYPE_CHECKING:
+    from app.models.slot import Slot
+    from app.models.doctor import Doctor
+    from app.models.clinic import Clinic
+    from app.models.conversation import ConversationSession
 
 VALID_STATUSES = ("confirmed", "cancelled", "rescheduled", "completed", "no_show")
 
