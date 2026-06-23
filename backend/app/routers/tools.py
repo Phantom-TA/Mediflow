@@ -100,12 +100,18 @@ def find_doctors(req: FindDoctorsRequest, db: Session = Depends(get_db)):
     if req.clinic_id:
         query = query.filter(Doctor.clinic_id == req.clinic_id)
 
-    if req.specialty and req.name_query:
-        query = query.filter(
-            Doctor.specialty.ilike(f"%{req.specialty}%") | Doctor.name.ilike(f"%{req.name_query}%")
-        )
-    elif req.specialty:
-        query = query.filter(Doctor.specialty.ilike(f"%{req.specialty}%"))
+    if req.specialty:
+        from app.services.conflict_resolver import resolve_specialties_and_departments
+        resolved = resolve_specialties_and_departments(req.specialty, db)
+        
+        specialty_filter = Doctor.specialty.in_(resolved) | Doctor.department.in_(resolved)
+        if not resolved:
+            specialty_filter = Doctor.specialty.ilike(f"%{req.specialty}%") | Doctor.department.ilike(f"%{req.specialty}%")
+
+        if req.name_query:
+            query = query.filter(specialty_filter | Doctor.name.ilike(f"%{req.name_query}%"))
+        else:
+            query = query.filter(specialty_filter)
     elif req.name_query:
         query = query.filter(Doctor.name.ilike(f"%{req.name_query}%"))
 
@@ -222,75 +228,23 @@ def check_availability(req: CheckAvailabilityRequest, db: Session = Depends(get_
 @router.post("/recommend_alternatives", response_model=APIResponse, dependencies=[Depends(verify_vapi_secret)])
 def recommend_alternatives(req: RecommendAlternativesRequest, db: Session = Depends(get_db)):
     """Heuristic slot ranking for alternative recommendations."""
-    ist_tz = ZoneInfo("Asia/Kolkata")
-    now_utc = datetime.now(timezone.utc)
+    from app.services.conflict_resolver import compute_alternative_slots
 
-    # Query all active doctors in this specialty
-    doctors = db.query(Doctor).filter(Doctor.specialty.ilike(f"%{req.specialty}%"), Doctor.is_active.is_(True)).all()
-    if not doctors:
-        return APIResponse(success=True, data=RecommendAlternativesResponseData(alternatives=[]))
-
-    doctor_ids = [doc.id for doc in doctors]
-    doctor_map = {doc.id: doc for doc in doctors}
-
-    # Query all available slots in next 14 days
-    slots = (
-        db.query(Slot)
-        .filter(
-            Slot.doctor_id.in_(doctor_ids),
-            Slot.is_available.is_(True),
-            Slot.slot_start >= now_utc,
-            Slot.slot_start <= now_utc + timedelta(days=14),
-        )
-        .all()
+    scored_slots = compute_alternative_slots(
+        db=db,
+        specialty_query=req.specialty,
+        preferred_doctor_id=req.preferred_doctor_id,
+        preferred_date=req.preferred_date,
+        preferred_time=req.preferred_time,
+        max_results=req.max_results,
     )
 
-    # Compute score for each slot
-    scored_slots = []
-    preferred_min = None
-    if req.preferred_time:
-        try:
-            h, m = map(int, req.preferred_time.split(":"))
-            preferred_min = h * 60 + m
-        except Exception:
-            pass
-
-    for s in slots:
-        score = 0.0
-        # 1. Same doctor bonus (40%)
-        if req.preferred_doctor_id and s.doctor_id == req.preferred_doctor_id:
-            score += 0.40
-
-        # 2. Same specialty bonus (20%) - all queried slots have this
-        score += 0.20
-
-        s_ist = s.slot_start.astimezone(ist_tz)
-
-        # 3. Date proximity (20%)
-        days_diff = abs((s_ist.date() - req.preferred_date).days)
-        score += 0.20 * max(0.0, 1.0 - (days_diff / 14.0))
-
-        # 4. Time proximity (20%)
-        if preferred_min is not None:
-            slot_min = s_ist.hour * 60 + s_ist.minute
-            min_diff = abs(slot_min - preferred_min)
-            score += 0.20 * max(0.0, 1.0 - (min_diff / 720.0))  # within 12h range
-        else:
-            score += 0.20
-
-        scored_slots.append((score, s))
-
-    # Sort by score DESC, then slot start ASC
-    scored_slots.sort(key=lambda x: (-x[0], x[1].slot_start))
-
     alternatives = []
-    for i, (score, s) in enumerate(scored_slots[:req.max_results]):
-        doc = doctor_map[s.doctor_id]
-        reason = "Same doctor, closest available slot" if req.preferred_doctor_id and s.doctor_id == req.preferred_doctor_id else "Same specialty, closest available slot"
+    for i, (score, s, reason) in enumerate(scored_slots):
         alternatives.append(
             AlternativeItem(
                 rank=i + 1,
-                doctor=DoctorMini(id=doc.id, name=doc.full_name, specialty=doc.specialty),
+                doctor=DoctorMini(id=s.doctor.id, name=s.doctor.full_name, specialty=s.doctor.specialty),
                 slot=SlotListItem(
                     id=s.id,
                     slot_start=to_ist_iso(s.slot_start),
