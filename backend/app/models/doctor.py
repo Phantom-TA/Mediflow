@@ -7,6 +7,7 @@ Every doctor record MUST have a source_url pointing to their Apollo profile.
 
 import uuid
 from datetime import datetime
+from typing import TYPE_CHECKING
 
 from sqlalchemy import (
     Boolean,
@@ -21,6 +22,12 @@ from sqlalchemy.dialects.postgresql import ARRAY, UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
+
+if TYPE_CHECKING:
+    from app.models.clinic import Clinic
+    from app.models.availability import Availability
+    from app.models.slot import Slot
+    from app.models.appointment import Appointment
 
 
 class Doctor(Base):

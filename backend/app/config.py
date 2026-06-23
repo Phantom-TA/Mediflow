@@ -23,7 +23,7 @@ class Settings(BaseSettings):
     timezone: str = "Asia/Kolkata"
 
     # ── Database ──────────────────────────────────────────────────────────
-    database_url: str
+    database_url: str = ""
     database_url_async: str = ""
     database_url_test: str = ""
 

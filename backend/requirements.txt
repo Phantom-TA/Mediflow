@@ -36,3 +36,6 @@ faker==25.0.0
 
 # Dev / Linting
 ruff==0.4.4
+
+# Windows Timezone Support
+tzdata==2026.2

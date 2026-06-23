@@ -11,6 +11,7 @@ day_of_week convention: 0=Monday, 1=Tuesday, ..., 6=Sunday
 
 import uuid
 from datetime import datetime, time
+from typing import TYPE_CHECKING
 
 from sqlalchemy import (
     Boolean,
@@ -27,6 +28,10 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
+
+if TYPE_CHECKING:
+    from app.models.doctor import Doctor
+    from app.models.slot import Slot
 
 DAY_NAMES = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 

@@ -23,6 +23,7 @@ os.environ["APP_ENV"] = "testing"
 # Make backend/ importable
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "backend"))
 
+from collections.abc import Generator  # noqa: E402
 from sqlalchemy import create_engine, text  # noqa: E402
 from sqlalchemy.orm import sessionmaker, Session  # noqa: E402
 
@@ -84,7 +85,7 @@ def test_engine():
 # ─────────────────────────────────────────────────────────────────────────────
 
 @pytest.fixture
-def db_session(test_engine) -> Session:
+def db_session(test_engine) -> Generator[Session, None, None]:
     """
     Yield a database session rolled back after each test.
     Keeps tests isolated without truncating tables.

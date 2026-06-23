@@ -13,6 +13,7 @@ All timestamps stored in UTC. API layer converts to IST for presentation.
 
 import uuid
 from datetime import datetime
+from typing import TYPE_CHECKING
 
 from sqlalchemy import (
     Boolean,
@@ -27,6 +28,11 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
+
+if TYPE_CHECKING:
+    from app.models.doctor import Doctor
+    from app.models.availability import Availability
+    from app.models.appointment import Appointment
 
 
 class Slot(Base):

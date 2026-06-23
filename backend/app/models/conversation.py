@@ -10,6 +10,7 @@ The LLM reads state from tool responses — it never owns state.
 
 import uuid
 from datetime import datetime
+from typing import TYPE_CHECKING
 
 from sqlalchemy import (
     Boolean,
@@ -22,6 +23,11 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
+
+if TYPE_CHECKING:
+    from app.models.appointment import Appointment
+    from app.models.doctor import Doctor
+    from app.models.slot import Slot
 
 VALID_OUTCOMES = ("booked", "cancelled", "rescheduled", "abandoned", "out_of_scope")
 VALID_INTENTS = ("book", "reschedule", "cancel", "unknown")

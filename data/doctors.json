@@ -1,0 +1,189 @@
+[
+  {
+    "salutation": "Dr.",
+    "name": "Girish B. Navasundi",
+    "specialty": "Interventional Cardiology",
+    "department": "Cardiology",
+    "qualifications": "MBBS, MD, DM (Cardiology)",
+    "experience_years": 21,
+    "designation": "Senior Consultant",
+    "languages": ["English", "Kannada", "Hindi"],
+    "source_url": "https://www.apollohospitals.com/hospitals/bangalore/bannerghatta-road/doctors/dr-girish-b-navasundi/"
+  },
+  {
+    "salutation": "Dr.",
+    "name": "Ramesh B.",
+    "specialty": "Cardiology",
+    "department": "Cardiology",
+    "qualifications": "MBBS, MD, DM (Cardiology)",
+    "experience_years": 29,
+    "designation": "Senior Consultant",
+    "languages": ["English", "Kannada", "Hindi"],
+    "source_url": "https://www.apollohospitals.com/hospitals/bangalore/bannerghatta-road/doctors/dr-ramesh-b/"
+  },
+  {
+    "salutation": "Dr.",
+    "name": "C. M. Nagesh",
+    "specialty": "Interventional Cardiology",
+    "department": "Cardiology",
+    "qualifications": "MBBS, MD, DM (Cardiology)",
+    "experience_years": 25,
+    "designation": "Senior Consultant",
+    "languages": ["English", "Kannada", "Hindi"],
+    "source_url": "https://www.apollohospitals.com/hospitals/bangalore/bannerghatta-road/doctors/dr-c-m-nagesh/"
+  },
+  {
+    "salutation": "Dr.",
+    "name": "Manish Samson",
+    "specialty": "Joint Replacement & Orthopedics",
+    "department": "Orthopedics",
+    "qualifications": "MBBS, MS (Orthopedics)",
+    "experience_years": 26,
+    "designation": "Senior Consultant",
+    "languages": ["English", "Tamil", "Hindi"],
+    "source_url": "https://www.apollohospitals.com/hospitals/bangalore/bannerghatta-road/doctors/dr-manish-samson/"
+  },
+  {
+    "salutation": "Dr.",
+    "name": "Rajashekhar K. T.",
+    "specialty": "Orthopedics & Joint Replacement",
+    "department": "Orthopedics",
+    "qualifications": "MBBS, MS (Orthopedics)",
+    "experience_years": 22,
+    "designation": "Senior Consultant",
+    "languages": ["English", "Kannada", "Telugu"],
+    "source_url": "https://www.apollohospitals.com/hospitals/bangalore/bannerghatta-road/doctors/dr-rajashekhar-k-t/"
+  },
+  {
+    "salutation": "Dr.",
+    "name": "Raviraj A.",
+    "specialty": "Orthopedics & Joint Replacement",
+    "department": "Orthopedics",
+    "qualifications": "MBBS, MS (Orthopedics), DNB",
+    "experience_years": 22,
+    "designation": "Senior Consultant",
+    "languages": ["English", "Kannada", "Hindi"],
+    "source_url": "https://www.apollohospitals.com/hospitals/bangalore/bannerghatta-road/doctors/dr-raviraj-a/"
+  },
+  {
+    "salutation": "Dr.",
+    "name": "Dinesh Kini K",
+    "specialty": "Gastroenterology",
+    "department": "Gastroenterology",
+    "qualifications": "MBBS, MD, DM (Gastroenterology)",
+    "experience_years": 25,
+    "designation": "Senior Consultant",
+    "languages": ["English", "Kannada", "Hindi", "Konkani"],
+    "source_url": "https://www.apollohospitals.com/hospitals/bangalore/bannerghatta-road/doctors/dr-dinesh-kini-k/"
+  },
+  {
+    "salutation": "Dr.",
+    "name": "Ravishankar Bhat B",
+    "specialty": "Gastroenterology & Hepatology",
+    "department": "Gastroenterology",
+    "qualifications": "MBBS, MD, DM (Gastroenterology)",
+    "experience_years": 17,
+    "designation": "Senior Consultant",
+    "languages": ["English", "Kannada", "Hindi"],
+    "source_url": "https://www.apollohospitals.com/hospitals/bangalore/bannerghatta-road/doctors/dr-ravishankar-bhat-b/"
+  },
+  {
+    "salutation": "Dr.",
+    "name": "Sumant Mantri",
+    "specialty": "Pulmonology & Respiratory Medicine",
+    "department": "Pulmonology",
+    "qualifications": "MBBS, MD, DNB (Pulmonology)",
+    "experience_years": 15,
+    "designation": "Senior Consultant",
+    "languages": ["English", "Kannada", "Hindi"],
+    "source_url": "https://www.apollohospitals.com/hospitals/bangalore/bannerghatta-road/doctors/dr-sumant-mantri/"
+  },
+  {
+    "salutation": "Dr.",
+    "name": "Vybhav Vijendra",
+    "specialty": "Pulmonology",
+    "department": "Pulmonology",
+    "qualifications": "MBBS, MD (Pulmonology)",
+    "experience_years": 8,
+    "designation": "Consultant",
+    "languages": ["English", "Kannada"],
+    "source_url": "https://www.apollohospitals.com/hospitals/bangalore/bannerghatta-road/doctors/dr-vybhav-vijendra/"
+  },
+  {
+    "salutation": "Dr.",
+    "name": "Surendra V H H",
+    "specialty": "Dermatology",
+    "department": "Dermatology",
+    "qualifications": "MBBS, MD (Dermatology)",
+    "experience_years": 40,
+    "designation": "Senior Consultant",
+    "languages": ["English", "Kannada"],
+    "source_url": "https://www.apollohospitals.com/hospitals/bangalore/bannerghatta-road/doctors/dr-surendra-v-h-h/"
+  },
+  {
+    "salutation": "Dr.",
+    "name": "Girish Panth",
+    "specialty": "Dermatology",
+    "department": "Dermatology",
+    "qualifications": "MBBS, DVD, MD (Dermatology)",
+    "experience_years": 35,
+    "designation": "Senior Consultant",
+    "languages": ["English", "Kannada", "Hindi"],
+    "source_url": "https://www.apollohospitals.com/hospitals/bangalore/bannerghatta-road/doctors/dr-girish-panth/"
+  },
+  {
+    "salutation": "Dr.",
+    "name": "Suryanarayana Sharma P M",
+    "specialty": "Neurology",
+    "department": "Neurology",
+    "qualifications": "MBBS, MD, DM (Neurology)",
+    "experience_years": 14,
+    "designation": "Senior Consultant",
+    "languages": ["English", "Kannada", "Hindi", "Telugu"],
+    "source_url": "https://www.apollohospitals.com/hospitals/bangalore/bannerghatta-road/doctors/dr-suryanarayana-sharma-p-m/"
+  },
+  {
+    "salutation": "Dr.",
+    "name": "Gowtham Raman S",
+    "specialty": "Neurosurgery (Brain & Spine)",
+    "department": "Neurology",
+    "qualifications": "MBBS, MCh (Neurosurgery)",
+    "experience_years": 12,
+    "designation": "Senior Consultant",
+    "languages": ["English", "Tamil", "Hindi"],
+    "source_url": "https://www.apollohospitals.com/hospitals/bangalore/bannerghatta-road/doctors/dr-gowtham-raman-s/"
+  },
+  {
+    "salutation": "Dr.",
+    "name": "Prashanth S Urs",
+    "specialty": "Pediatrics & Neonatology",
+    "department": "Pediatrics",
+    "qualifications": "MBBS, MD (Pediatrics)",
+    "experience_years": 20,
+    "designation": "Senior Consultant",
+    "languages": ["English", "Kannada", "Hindi"],
+    "source_url": "https://www.apollohospitals.com/hospitals/bangalore/bannerghatta-road/doctors/dr-prashanth-s-urs/"
+  },
+  {
+    "salutation": "Dr.",
+    "name": "Chitra Ramamurthy",
+    "specialty": "Gynecology & Obstetrics",
+    "department": "Gynecology & Obstetrics",
+    "qualifications": "MBBS, DGO, MD (Obstetrics & Gynecology)",
+    "experience_years": 30,
+    "designation": "Senior Consultant",
+    "languages": ["English", "Kannada", "Hindi"],
+    "source_url": "https://www.apollohospitals.com/hospitals/bangalore/bannerghatta-road/doctors/dr-chitra-ramamurthy/"
+  },
+  {
+    "salutation": "Dr.",
+    "name": "Sunil Narayan Dutt",
+    "specialty": "ENT (Ear, Nose & Throat)",
+    "department": "ENT (Ear, Nose, Throat)",
+    "qualifications": "MBBS, MS, DLO, FRCS (ENT)",
+    "experience_years": 25,
+    "designation": "Senior Consultant",
+    "languages": ["English", "Kannada", "Hindi"],
+    "source_url": "https://www.apollohospitals.com/hospitals/bangalore/bannerghatta-road/doctors/dr-sunil-narayan-dutt/"
+  }
+]
