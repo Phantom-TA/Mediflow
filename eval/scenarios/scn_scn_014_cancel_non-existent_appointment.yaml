@@ -1,0 +1,17 @@
+id: SCN-014
+name: Cancel Non-Existent Appointment
+category: error_recovery
+description: Tries to cancel an appointment when none exists, graceful response.
+caller_profile:
+  name: Ghost Patient
+  phone: '+910000000004'
+conversation_script:
+- turn: 1
+  speaker: patient
+  utterance: Please cancel my appointment.
+- turn: 2
+  speaker: agent
+  expected_tool_calls:
+  - find_patient_appointments
+expected_db_state: {}
+expected_outcome: no_mutation

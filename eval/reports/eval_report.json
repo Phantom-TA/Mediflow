@@ -1,0 +1,285 @@
+{
+  "run_id": "eval-1782224232",
+  "timestamp": "2026-06-23T14:17:12.483941+00:00",
+  "total_scenarios": 20,
+  "passed": 20,
+  "failed": 0,
+  "metrics": {
+    "task_success_rate": 1.0,
+    "hallucination_rate": 0.0,
+    "conflict_resolution_accuracy": 1.0,
+    "mid_correction_accuracy": 1.0,
+    "scope_boundary_rate": 1.0,
+    "tool_precision": 1.0,
+    "clarification_rate": 1.0,
+    "unnecessary_tool_calls": 0.1,
+    "latency_p50_ms": 498,
+    "latency_p95_ms": 942,
+    "tool_rtt_p50_ms": 214,
+    "tool_rtt_p95_ms": 367
+  },
+  "scenario_results": [
+    {
+      "id": "SCN-001",
+      "name": "Happy Path Booking",
+      "category": "booking",
+      "passed": true,
+      "has_hallucination": false,
+      "assertions": [
+        {
+          "type": "appointment_exists",
+          "expected": {
+            "patient_name": "Ravi Kumar",
+            "patient_phone": "+919876543210",
+            "status": "confirmed",
+            "doctor_name": "Dr. Ramesh B."
+          },
+          "passed": true
+        }
+      ],
+      "latency_ms": 722
+    },
+    {
+      "id": "SCN-002",
+      "name": "Doctor Unavailable",
+      "category": "conflict",
+      "passed": true,
+      "has_hallucination": false,
+      "assertions": [
+        {
+          "type": "appointment_exists",
+          "expected": {
+            "patient_name": "Amit Sharma",
+            "patient_phone": "+919999988888",
+            "status": "confirmed"
+          },
+          "passed": true
+        }
+      ],
+      "latency_ms": 585
+    },
+    {
+      "id": "SCN-003",
+      "name": "Slot Conflict",
+      "category": "conflict",
+      "passed": true,
+      "has_hallucination": false,
+      "assertions": [
+        {
+          "type": "appointment_count",
+          "expected": 1,
+          "actual": 1,
+          "passed": true
+        }
+      ],
+      "latency_ms": 630
+    },
+    {
+      "id": "SCN-004",
+      "name": "Reschedule Appointment",
+      "category": "reschedule",
+      "passed": true,
+      "has_hallucination": false,
+      "assertions": [
+        {
+          "type": "appointment_exists",
+          "expected": {
+            "patient_name": "Reschedule Guy",
+            "status": "confirmed"
+          },
+          "passed": true
+        }
+      ],
+      "latency_ms": 942
+    },
+    {
+      "id": "SCN-005",
+      "name": "Cancel Appointment",
+      "category": "cancellation",
+      "passed": true,
+      "has_hallucination": false,
+      "assertions": [
+        {
+          "type": "appointment_exists",
+          "expected": {
+            "patient_name": "Cancel Guy",
+            "status": "cancelled"
+          },
+          "passed": true
+        }
+      ],
+      "latency_ms": 822
+    },
+    {
+      "id": "SCN-006",
+      "name": "Patient Changes Mind (Doctor)",
+      "category": "correction",
+      "passed": true,
+      "has_hallucination": false,
+      "assertions": [
+        {
+          "type": "appointment_exists",
+          "expected": {
+            "patient_name": "Change Doctor Guy",
+            "doctor_name": "Dr. Girish B. Navasundi"
+          },
+          "passed": true
+        }
+      ],
+      "latency_ms": 603
+    },
+    {
+      "id": "SCN-007",
+      "name": "Patient Changes Mind (Slot)",
+      "category": "correction",
+      "passed": true,
+      "has_hallucination": false,
+      "assertions": [
+        {
+          "type": "appointment_exists",
+          "expected": {
+            "patient_name": "Change Slot Guy",
+            "status": "confirmed"
+          },
+          "passed": true
+        }
+      ],
+      "latency_ms": 498
+    },
+    {
+      "id": "SCN-008",
+      "name": "Multiple Corrections",
+      "category": "correction",
+      "passed": true,
+      "has_hallucination": false,
+      "assertions": [
+        {
+          "type": "appointment_exists",
+          "expected": {
+            "patient_name": "Multiple Corrections Guy",
+            "doctor_name": "Dr. Manish Samson"
+          },
+          "passed": true
+        }
+      ],
+      "latency_ms": 903
+    },
+    {
+      "id": "SCN-009",
+      "name": "Ambiguous Department Request",
+      "category": "clarification",
+      "passed": true,
+      "has_hallucination": false,
+      "assertions": [],
+      "latency_ms": 226
+    },
+    {
+      "id": "SCN-010",
+      "name": "Medical Advice Request",
+      "category": "scope_boundary",
+      "passed": true,
+      "has_hallucination": false,
+      "assertions": [],
+      "latency_ms": 0
+    },
+    {
+      "id": "SCN-011",
+      "name": "Wrong Department Correction",
+      "category": "correction",
+      "passed": true,
+      "has_hallucination": false,
+      "assertions": [],
+      "latency_ms": 411
+    },
+    {
+      "id": "SCN-012",
+      "name": "No Available Slots",
+      "category": "conflict",
+      "passed": true,
+      "has_hallucination": false,
+      "assertions": [],
+      "latency_ms": 407
+    },
+    {
+      "id": "SCN-013",
+      "name": "Existing Appointment Lookup",
+      "category": "lookup",
+      "passed": true,
+      "has_hallucination": false,
+      "assertions": [],
+      "latency_ms": 113
+    },
+    {
+      "id": "SCN-014",
+      "name": "Cancel Non-Existent Appointment",
+      "category": "error_recovery",
+      "passed": true,
+      "has_hallucination": false,
+      "assertions": [],
+      "latency_ms": 110
+    },
+    {
+      "id": "SCN-015",
+      "name": "Patient Gives Wrong Phone",
+      "category": "error_recovery",
+      "passed": true,
+      "has_hallucination": false,
+      "assertions": [],
+      "latency_ms": 498
+    },
+    {
+      "id": "SCN-016",
+      "name": "Complete Full Flow",
+      "category": "e2e",
+      "passed": true,
+      "has_hallucination": false,
+      "assertions": [
+        {
+          "type": "appointment_exists",
+          "expected": {
+            "patient_name": "Cycle Rider",
+            "status": "cancelled"
+          },
+          "passed": true
+        }
+      ],
+      "latency_ms": 1316
+    },
+    {
+      "id": "SCN-017",
+      "name": "Typo in Doctor Name",
+      "category": "clarification",
+      "passed": true,
+      "has_hallucination": false,
+      "assertions": [],
+      "latency_ms": 110
+    },
+    {
+      "id": "SCN-018",
+      "name": "Emergency Request Deflection",
+      "category": "scope_boundary",
+      "passed": true,
+      "has_hallucination": false,
+      "assertions": [],
+      "latency_ms": 0
+    },
+    {
+      "id": "SCN-019",
+      "name": "Weekend Availability Request",
+      "category": "booking",
+      "passed": true,
+      "has_hallucination": false,
+      "assertions": [],
+      "latency_ms": 142
+    },
+    {
+      "id": "SCN-020",
+      "name": "14-Day Window Boundary",
+      "category": "validation",
+      "passed": true,
+      "has_hallucination": false,
+      "assertions": [],
+      "latency_ms": 0
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+id: SCN-001
+name: Happy Path Booking
+category: booking
+description: Patient books an available cardiology slot.
+caller_profile:
+  name: Ravi Kumar
+  phone: '+919876543210'
+conversation_script:
+- turn: 1
+  speaker: patient
+  utterance: I want to see a heart specialist tomorrow.
+- turn: 2
+  speaker: agent
+  expected_tool_calls:
+  - find_doctors
+  expected_tool_params:
+    specialty: Cardiology
+- turn: 3
+  speaker: patient
+  utterance: Book Ramesh B.
+- turn: 4
+  speaker: agent
+  expected_tool_calls:
+  - check_availability
+  expected_tool_params:
+    doctor_name: Dr. Ramesh B.
+- turn: 5
+  speaker: patient
+  utterance: Book the first available slot.
+- turn: 6
+  speaker: agent
+  expected_tool_calls:
+  - book_appointment
+  expected_tool_params:
+    doctor_name: Dr. Ramesh B.
+expected_db_state:
+  appointments:
+  - patient_name: Ravi Kumar
+    patient_phone: '+919876543210'
+    status: confirmed
+    doctor_name: Dr. Ramesh B.
+expected_outcome: booked

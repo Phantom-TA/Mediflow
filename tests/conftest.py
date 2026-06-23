@@ -90,11 +90,24 @@ def db_session(test_engine) -> Generator[Session, None, None]:
     Yield a database session rolled back after each test.
     Keeps tests isolated without truncating tables.
     """
+    from sqlalchemy import event
     connection = test_engine.connect()
     transaction = connection.begin()
+    
+    # Start a nested transaction (SAVEPOINT)
+    nested = connection.begin_nested()
+    
     TestSession = sessionmaker(bind=connection, autocommit=False, autoflush=False)
     session = TestSession()
+    
+    @event.listens_for(session, "after_transaction_end")
+    def end_savepoint(session, transaction):
+        nonlocal nested
+        if not nested.is_active:
+            nested = connection.begin_nested()
+
     yield session
+    
     session.close()
     transaction.rollback()
     connection.close()
