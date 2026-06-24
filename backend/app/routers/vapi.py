@@ -93,7 +93,16 @@ async def vapi_tool_webhook(
             }
         )
 
-    # 3. Validate request schema
+    # 3. Check message type
+    message = payload.get("message", {})
+    message_type = message.get("type")
+    
+    if message_type != "tool-calls":
+        # Log and ignore other message types (speech-update, status-update, assistant.started, etc.)
+        log_webhook_to_db(db, headers, payload, response={"success": True})
+        return JSONResponse(status_code=200, content={"success": True})
+
+    # 4. Validate request schema
     try:
         req = VapiWebhookRequest(**payload)
     except Exception as e:
