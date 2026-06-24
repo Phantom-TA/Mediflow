@@ -74,6 +74,7 @@ def test_engine():
     if not DB_AVAILABLE:
         pytest.skip("No live PostgreSQL — skipping DB fixture.")
     engine = create_engine(_db_url, echo=False)
+    Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)
     yield engine
     Base.metadata.drop_all(bind=engine)
@@ -94,17 +95,16 @@ def db_session(test_engine) -> Generator[Session, None, None]:
     connection = test_engine.connect()
     transaction = connection.begin()
     
-    # Start a nested transaction (SAVEPOINT)
-    nested = connection.begin_nested()
-    
     TestSession = sessionmaker(bind=connection, autocommit=False, autoflush=False)
     session = TestSession()
     
+    # Start a nested transaction (SAVEPOINT) on the session
+    session.begin_nested()
+    
     @event.listens_for(session, "after_transaction_end")
     def end_savepoint(session, transaction):
-        nonlocal nested
-        if not nested.is_active:
-            nested = connection.begin_nested()
+        if transaction.nested and not transaction._parent.nested:
+            session.begin_nested()
 
     yield session
     
