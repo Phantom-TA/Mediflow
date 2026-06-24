@@ -21,12 +21,7 @@
       {
         "async": false,
         "type": "function",
-        "messages": [
-          {
-            "type": "request-start",
-            "content": "Searching for doctors..."
-          }
-        ],
+
         "function": {
           "name": "find_doctors",
           "description": "Find doctors by specialty/department or by name. At least one parameter is required.",
@@ -48,12 +43,7 @@
       {
         "async": false,
         "type": "function",
-        "messages": [
-          {
-            "type": "request-start",
-            "content": "Checking slot availability..."
-          }
-        ],
+
         "function": {
           "name": "check_availability",
           "description": "Get all available slots for a specific doctor on a specific date.",
@@ -80,12 +70,7 @@
       {
         "async": false,
         "type": "function",
-        "messages": [
-          {
-            "type": "request-start",
-            "content": "Finding alternative slots..."
-          }
-        ],
+
         "function": {
           "name": "recommend_alternatives",
           "description": "Find recommended alternative slots if a preferred slot or doctor is not available.",
@@ -120,12 +105,7 @@
       {
         "async": false,
         "type": "function",
-        "messages": [
-          {
-            "type": "request-start",
-            "content": "Booking your appointment..."
-          }
-        ],
+
         "function": {
           "name": "book_appointment",
           "description": "Book a new appointment slot for a patient. Ensure slot_id and doctor_id are retrieved from check_availability or recommend_alternatives.",
@@ -167,12 +147,7 @@
       {
         "async": false,
         "type": "function",
-        "messages": [
-          {
-            "type": "request-start",
-            "content": "Rescheduling your appointment..."
-          }
-        ],
+
         "function": {
           "name": "reschedule_appointment",
           "description": "Reschedule an existing confirmed appointment to a new slot.",
@@ -205,12 +180,7 @@
       {
         "async": false,
         "type": "function",
-        "messages": [
-          {
-            "type": "request-start",
-            "content": "Cancelling your appointment..."
-          }
-        ],
+
         "function": {
           "name": "cancel_appointment",
           "description": "Cancel an existing confirmed appointment.",
@@ -241,12 +211,7 @@
       {
         "async": false,
         "type": "function",
-        "messages": [
-          {
-            "type": "request-start",
-            "content": "Looking up your appointments..."
-          }
-        ],
+
         "function": {
           "name": "find_patient_appointments",
           "description": "Find all active/confirmed appointments registered under a patient's phone number.",
