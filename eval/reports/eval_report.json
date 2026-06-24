@@ -1,6 +1,6 @@
 {
-  "run_id": "eval-1782224232",
-  "timestamp": "2026-06-23T14:17:12.483941+00:00",
+  "run_id": "eval-1782289323",
+  "timestamp": "2026-06-24T08:22:03.824304+00:00",
   "total_scenarios": 20,
   "passed": 20,
   "failed": 0,
@@ -13,10 +13,10 @@
     "tool_precision": 1.0,
     "clarification_rate": 1.0,
     "unnecessary_tool_calls": 0.1,
-    "latency_p50_ms": 498,
-    "latency_p95_ms": 942,
-    "tool_rtt_p50_ms": 214,
-    "tool_rtt_p95_ms": 367
+    "latency_p50_ms": 484,
+    "latency_p95_ms": 962,
+    "tool_rtt_p50_ms": 223,
+    "tool_rtt_p95_ms": 374
   },
   "scenario_results": [
     {
@@ -37,7 +37,7 @@
           "passed": true
         }
       ],
-      "latency_ms": 722
+      "latency_ms": 834
     },
     {
       "id": "SCN-002",
@@ -56,7 +56,7 @@
           "passed": true
         }
       ],
-      "latency_ms": 585
+      "latency_ms": 643
     },
     {
       "id": "SCN-003",
@@ -72,7 +72,7 @@
           "passed": true
         }
       ],
-      "latency_ms": 630
+      "latency_ms": 615
     },
     {
       "id": "SCN-004",
@@ -90,7 +90,7 @@
           "passed": true
         }
       ],
-      "latency_ms": 942
+      "latency_ms": 962
     },
     {
       "id": "SCN-005",
@@ -108,7 +108,7 @@
           "passed": true
         }
       ],
-      "latency_ms": 822
+      "latency_ms": 869
     },
     {
       "id": "SCN-006",
@@ -126,7 +126,7 @@
           "passed": true
         }
       ],
-      "latency_ms": 603
+      "latency_ms": 600
     },
     {
       "id": "SCN-007",
@@ -144,7 +144,7 @@
           "passed": true
         }
       ],
-      "latency_ms": 498
+      "latency_ms": 492
     },
     {
       "id": "SCN-008",
@@ -162,7 +162,7 @@
           "passed": true
         }
       ],
-      "latency_ms": 903
+      "latency_ms": 949
     },
     {
       "id": "SCN-009",
@@ -171,7 +171,7 @@
       "passed": true,
       "has_hallucination": false,
       "assertions": [],
-      "latency_ms": 226
+      "latency_ms": 248
     },
     {
       "id": "SCN-010",
@@ -189,7 +189,7 @@
       "passed": true,
       "has_hallucination": false,
       "assertions": [],
-      "latency_ms": 411
+      "latency_ms": 418
     },
     {
       "id": "SCN-012",
@@ -198,7 +198,7 @@
       "passed": true,
       "has_hallucination": false,
       "assertions": [],
-      "latency_ms": 407
+      "latency_ms": 408
     },
     {
       "id": "SCN-013",
@@ -207,7 +207,7 @@
       "passed": true,
       "has_hallucination": false,
       "assertions": [],
-      "latency_ms": 113
+      "latency_ms": 115
     },
     {
       "id": "SCN-014",
@@ -216,7 +216,7 @@
       "passed": true,
       "has_hallucination": false,
       "assertions": [],
-      "latency_ms": 110
+      "latency_ms": 142
     },
     {
       "id": "SCN-015",
@@ -225,7 +225,7 @@
       "passed": true,
       "has_hallucination": false,
       "assertions": [],
-      "latency_ms": 498
+      "latency_ms": 484
     },
     {
       "id": "SCN-016",
@@ -252,7 +252,7 @@
       "passed": true,
       "has_hallucination": false,
       "assertions": [],
-      "latency_ms": 110
+      "latency_ms": 122
     },
     {
       "id": "SCN-018",
@@ -270,7 +270,7 @@
       "passed": true,
       "has_hallucination": false,
       "assertions": [],
-      "latency_ms": 142
+      "latency_ms": 154
     },
     {
       "id": "SCN-020",
