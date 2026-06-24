@@ -188,7 +188,7 @@ class FindPatientAppointmentsData(BaseModel):
 
 class VapiFunction(BaseModel):
     name: str
-    arguments: str  # JSON String of arguments
+    arguments: str | dict  # JSON String or dictionary of arguments
 
 
 class VapiToolCall(BaseModel):
