@@ -121,21 +121,24 @@ async def vapi_tool_webhook(
 
     for tool_call in req.message.toolCallList:
         func_name = tool_call.function.name
-        arg_str = tool_call.function.arguments
+        arg_val = tool_call.function.arguments
         
-        logger.info(f"Processing Vapi tool call {tool_call.id}: {func_name} with args {arg_str}")
+        logger.info(f"Processing Vapi tool call {tool_call.id}: {func_name} with args {arg_val}")
 
         # Parse arguments safely
-        try:
-            args = json.loads(arg_str) if arg_str else {}
-        except Exception as e:
-            err_resp = APIResponse(
-                success=False,
-                error_code="VALIDATION_ERROR",
-                error_message=f"Failed to parse arguments: {str(e)}",
-            )
-            results.append(VapiToolResult(toolCallId=tool_call.id, result=err_resp.model_dump_json()))
-            continue
+        if isinstance(arg_val, dict):
+            args = arg_val
+        else:
+            try:
+                args = json.loads(arg_val) if arg_val else {}
+            except Exception as e:
+                err_resp = APIResponse(
+                    success=False,
+                    error_code="VALIDATION_ERROR",
+                    error_message=f"Failed to parse arguments: {str(e)}",
+                )
+                results.append(VapiToolResult(toolCallId=tool_call.id, result=err_resp.model_dump_json()))
+                continue
 
         # Inject call_id if missing or empty
         if not args.get("call_id") and call_id:
