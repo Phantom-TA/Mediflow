@@ -9,8 +9,8 @@
     "language": "en"
   },
   "voice": {
-    "provider": "playht",
-    "voiceId": "susan"
+    "provider": "vapi",
+    "voiceId": "Emma"
   },
   "model": {
     "provider": "openai",
