@@ -36,7 +36,7 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 
-def log_webhook_to_db(db: Session, headers: dict, payload: dict, response: dict = None, error: str = None):
+def log_webhook_to_db(db: Session, headers: dict, payload: dict, response: dict | None = None, error: str | None = None):
     try:
         query = text("""
             INSERT INTO webhook_logs (headers, payload, response, error)
@@ -65,13 +65,14 @@ async def vapi_tool_webhook(
     """
     headers = dict(request.headers)
     
+    body_bytes = b""
     # 1. Parse Raw Body
     try:
         body_bytes = await request.body()
         body_str = body_bytes.decode("utf-8")
         payload = json.loads(body_str) if body_str else {}
     except Exception as e:
-        raw_body = body_bytes.decode("utf-8", errors="ignore") if 'body_bytes' in locals() else ""
+        raw_body = body_bytes.decode("utf-8", errors="ignore")
         log_webhook_to_db(db, headers, {"raw": raw_body}, error=f"JSON Parse Error: {str(e)}")
         return JSONResponse(
             status_code=400,
