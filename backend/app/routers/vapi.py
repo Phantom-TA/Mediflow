@@ -1,10 +1,12 @@
 import json
 import logging
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Header, Request
+from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
+from sqlalchemy import text
 
 from app.database import get_db
-from app.routers.tools import verify_vapi_secret
+from app.config import get_settings
 from app.schemas.tools import (
     VapiWebhookRequest,
     VapiWebhookResponse,
@@ -34,12 +36,75 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 
-@router.post("/tool", response_model=VapiWebhookResponse, dependencies=[Depends(verify_vapi_secret)])
-def vapi_tool_webhook(req: VapiWebhookRequest, db: Session = Depends(get_db)):
+def log_webhook_to_db(db: Session, headers: dict, payload: dict, response: dict = None, error: str = None):
+    try:
+        query = text("""
+            INSERT INTO webhook_logs (headers, payload, response, error)
+            VALUES (:headers, :payload, :response, :error)
+        """)
+        db.execute(query, {
+            "headers": json.dumps(headers),
+            "payload": json.dumps(payload),
+            "response": json.dumps(response) if response else None,
+            "error": error
+        })
+        db.commit()
+    except Exception as e:
+        logger.error(f"Failed to log webhook to db: {e}")
+
+
+@router.post("/tool")
+async def vapi_tool_webhook(
+    request: Request,
+    db: Session = Depends(get_db),
+    x_vapi_secret: str | None = Header(None, alias="X-Vapi-Secret")
+):
     """
     Unified Vapi webhook handler for tool calls.
-    Parses arguments, routes internally, captures exceptions, and returns the Vapi-expected response envelope.
+    Logs every request and response to a persistent DB table for remote diagnostics.
     """
+    headers = dict(request.headers)
+    
+    # 1. Parse Raw Body
+    try:
+        body_bytes = await request.body()
+        body_str = body_bytes.decode("utf-8")
+        payload = json.loads(body_str) if body_str else {}
+    except Exception as e:
+        raw_body = body_bytes.decode("utf-8", errors="ignore") if 'body_bytes' in locals() else ""
+        log_webhook_to_db(db, headers, {"raw": raw_body}, error=f"JSON Parse Error: {str(e)}")
+        return JSONResponse(
+            status_code=400,
+            content={"success": False, "error_code": "BAD_REQUEST", "error_message": "Invalid JSON payload"}
+        )
+
+    # 2. Verify Secret
+    settings = get_settings()
+    if settings.vapi_secret and x_vapi_secret != settings.vapi_secret:
+        err_msg = f"Unauthorized: X-Vapi-Secret header '{x_vapi_secret}' does not match expected secret."
+        log_webhook_to_db(db, headers, payload, error=err_msg)
+        return JSONResponse(
+            status_code=401,
+            content={
+                "success": False,
+                "error_code": "UNAUTHORIZED",
+                "error_message": "Invalid X-Vapi-Secret header value.",
+                "data": None
+            }
+        )
+
+    # 3. Validate request schema
+    try:
+        req = VapiWebhookRequest(**payload)
+    except Exception as e:
+        err_msg = f"Request validation failed: {str(e)}"
+        log_webhook_to_db(db, headers, payload, error=err_msg)
+        return JSONResponse(
+            status_code=422,
+            content={"success": False, "error_code": "VALIDATION_ERROR", "error_message": err_msg}
+        )
+
+    # 4. Execute tool calls
     results = []
     call_id = req.message.call.id
     phone_number = req.message.call.phoneNumber
@@ -115,7 +180,6 @@ def vapi_tool_webhook(req: VapiWebhookRequest, db: Session = Depends(get_db)):
         except Exception as e:
             # Catch standard HTTPException or database/validation error
             if hasattr(e, "detail") and isinstance(e.detail, dict):
-                # Standard APIResponse exception raised by endpoints
                 err_resp = APIResponse(
                     success=False,
                     error_code=e.detail.get("error_code", "INTERNAL_ERROR"),
@@ -134,7 +198,11 @@ def vapi_tool_webhook(req: VapiWebhookRequest, db: Session = Depends(get_db)):
             continue
 
         # Append successful result
-        # resp is an APIResponse object, we serialize it to json string
         results.append(VapiToolResult(toolCallId=tool_call.id, result=resp.model_dump_json()))
 
-    return VapiWebhookResponse(results=results)
+    resp_obj = VapiWebhookResponse(results=results)
+    
+    # 5. Log success response to DB
+    log_webhook_to_db(db, headers, payload, response=resp_obj.model_dump())
+    
+    return resp_obj
