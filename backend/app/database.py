@@ -87,11 +87,13 @@ def check_database_connection() -> bool:
     Return True if the database is reachable, False otherwise.
     Used by the /health endpoint.
     """
+    import sys
     try:
         with engine.connect() as conn:
             conn.execute(text("SELECT 1"))
         return True
-    except Exception:
+    except Exception as e:
+        print(f"Database connection verification failed: {e}", file=sys.stderr)
         return False
 
 
