@@ -87,7 +87,7 @@ def create_app() -> FastAPI:
         )
 
     # ── Health check ──────────────────────────────────────────────────────
-    @app.get("/health", tags=["system"])
+    @app.api_route("/health", methods=["GET", "HEAD"], tags=["system"])
     def health_check():
         db_ok = check_database_connection()
         return {
