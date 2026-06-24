@@ -4,7 +4,7 @@ FastAPI application entry point.
 
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
@@ -88,8 +88,10 @@ def create_app() -> FastAPI:
 
     # ── Health check ──────────────────────────────────────────────────────
     @app.api_route("/health", methods=["GET", "HEAD"], tags=["system"])
-    def health_check():
+    def health_check(request: Request):
         db_ok = check_database_connection()
+        if request.method == "HEAD":
+            return Response(status_code=200)
         return {
             "status": "healthy" if db_ok else "degraded",
             "database": "connected" if db_ok else "disconnected",
